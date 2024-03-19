@@ -1,0 +1,36 @@
+{% load static %}
+<div class="container">
+  <a href="{% url 'home' %}" class="header__logo">
+    <img src="{% static 'images/logo.svg'' %}" />
+    <h1>Paltoc Healthcare Center</h1>
+  </a>
+
+  <!-- Logged In -->
+  {% if request.user.is_authenticated %}
+  <div class="header__user">
+    <!-- Greetings with link to profile -->
+    <p>
+      Magandang buhay
+      <a href="{% url 'profile' %}">{{request.user.first_name}}!</a>
+    </p>
+    <!-- Dashboard if admin -->
+    {% if request.user.is_staff == True %}
+    <div>
+      <a href="{% url 'staff_dashboard' %}">Dashboard</a>
+    </div>
+    {% endif %}
+    <!-- Logout -->
+    <a href="{% url 'logout' %}">Logout</a>
+  </div>
+
+  <!-- Not Logged In -->
+  {% else %}
+  <a href="{% url 'login' %}">
+    <p>Login</p>
+  </a>
+
+  <a href="{% url 'register' %}">
+    <p>Register</p>
+  </a>
+  {% endif %}
+</div>

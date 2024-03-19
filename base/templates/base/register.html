@@ -1,0 +1,20 @@
+{% extends 'main.html' %} {% block content %}
+
+<div>
+  <form action="" method="POST">
+    {% csrf_token %} 
+    
+    {% for field in form %}
+    <div>
+      <label for="{{field.label}}">{{field.label}}</label>
+      {{field}}
+    </div>
+    {% endfor %}
+
+    <button type="submit">Irehistro</button>
+  </form>
+</div>
+
+<div>May account na? Mag-<a href="{% url 'login' %}">login</a></div>
+
+{% endblock content %}

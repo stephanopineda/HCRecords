@@ -1,0 +1,26 @@
+{% extends 'main.html' %} {% block content %}
+
+<div>
+  <form action="" method="POST">
+    {% csrf_token %}
+
+    <label for="username">Email/Username/Phone Number</label>
+    <input type="username" name="username" placeholder="Email/Username/Phone Number" />
+
+    <label for="password">Password</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+    />
+
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+<div>
+    Wala pang account? Mag-<a href="{% url 'register' %}">rehistro</a>  
+</div>
+
+{% endblock content %}
