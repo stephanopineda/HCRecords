@@ -26,6 +26,7 @@ def register_page(request):
                 login(request, user)
                 return redirect('home')
             else: 
+                # To be added: handle username and password requirements 
                 messages.error(request, "Error occurred. Please try again.")
                 
         
