@@ -8,12 +8,11 @@ class DateInput(forms.DateInput):
 class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = [ 'username', 'first_name', 'middle_name', 'last_name'
-                  , 'birth_date'
+        fields = [ 'first_name', 'middle_name', 'last_name'
+                  , 'birth_date' , 'username' 
                   ]
         
         widgets = {
             'birth_date': DateInput()
         }
-        
 

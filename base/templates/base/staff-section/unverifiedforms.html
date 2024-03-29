@@ -1,0 +1,40 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unverified Forms</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/staff/unverified-forms.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="form-container">
+    <h2 class="form-title">Unverified Forms</h2>
+
+    <table class="forms-table">
+        <thead>
+            <tr>
+                <th>Form</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="even">
+                <td>Form 1</td>
+                <td><button class="view-button">View</button></td>
+            </tr>
+            <tr class="odd">
+                <td>Form 2</td>
+                <td><button class="view-button">View</button></td>
+            </tr>
+            <tr class="even">
+                <td>Form 3</td>
+                <td><button class="view-button">View</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

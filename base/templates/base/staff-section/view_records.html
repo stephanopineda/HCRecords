@@ -1,0 +1,78 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/staff/staff_patients.css' %}">
+</head>
+<body>
+
+    <div class="records-container">
+    <h2 class="records-title">Patient Records</h2>
+
+    <div class="search-filter-container">
+        <div class="search">
+            <input type="text" class="searchTerm" placeholder="Search...">
+            <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+       
+        <div class="filter">
+            <select>
+                <option value="">Filter...</option>
+            </select>
+            <i class="fas fa-filter"></i>
+        </div>
+    </div>
+
+    <div class="records-container">
+    <div id="patientsTable"></div>
+    
+
+    <table class="records-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th>Record Type</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr class="even">
+                <td>1</td>
+                <td>Lebron James</td>
+                <td>johndoe@example.com</td>
+                <td>1234567890</td>
+                <td>Child</td>
+                <td><button class="view-button">View</button></td>
+            </tr>
+            <tr class="odd">
+                <td>2</td>
+                <td>Alex Cabagnot</td>
+                <td>janesmith@example.com</td>
+                <td>9876543210</td>
+                <td>Adult</td>
+                <td><button class="view-button">View</button></td>
+            </tr>
+            <tr class="even">
+                <td>3</td>
+                <td>Michael Jordann</td>
+                <td>michaeljohnson@example.com</td>
+                <td>5678901234</td>
+                <td>CHild</td>
+                <td><button class="view-button">View</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

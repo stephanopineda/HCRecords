@@ -1,0 +1,128 @@
+/* dashboard.css */
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ffffff;
+    margin-top: 30px;
+    margin-left: 120px;
+}
+
+.dashboard-item {
+    flex: 0 0 calc(33.33% - 20px); 
+    background-color: #ffffff;
+    border: 2px solid #244b29; 
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 10px 10px 5px lightblue;
+    text-align: center; 
+}
+
+.dashboard-item h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.dashboard-item .value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.dashboard-item i {
+    font-size: 36px; 
+    margin-bottom: 10px;
+}
+
+.total-patients { border-color: #24344B; }
+.pending-forms { border-color: #24344B; }
+.total-submitted-forms { border-color: #24344B; }
+.total-child-patients { border-color: #24344B; }
+.total-adolescent-patients { border-color: #24344B; }
+.total-adult-patients { border-color: #24344B; }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) { 
+    .dashboard {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center; 
+        margin-left: 80px;
+        margin-top: 0;
+        width: calc(100% - 120px);
+        padding: 10px;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+    .dashboard {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center; 
+        margin-left: 100px;
+        margin-top: 0;
+        width: calc(100% - 120px);
+        padding: 10px;
+    }
+
+    .dashboard-item {
+        flex: 0 0 calc(33.33% - 20px);
+        margin-bottom: 20px;
+        max-width: 350px;
+    }
+
+    .dashboard-item h2,
+    .dashboard-item .value {
+        text-align: center;
+    }
+
+    .dashboard-item i {
+        margin-bottom: 2px;
+        font-size: 12px;
+        display: block;
+    }
+
+    .total-patients { border: 2px solid #24344B; }
+    .pending-forms { border: 2px solid #24344B; }
+    .total-submitted-forms { border: 2px solid #24344B; }
+    .total-child-patients { border: 2px solid #24344B; }
+    .total-adolescent-patients { border: 2px solid #24344B; }
+    .total-adult-patients { border: 2px solid #24344B; }
+}
+
+@media screen and (max-width: 500px) {
+        .dashboard-item {
+            max-width: calc(50% - 20px); 
+            font-size: 12px; 
+            padding: 10px; 
+        }
+    
+        .dashboard-item h2,
+        .dashboard-item .value {
+            text-align: center;
+            font-size: 12px; 
+            margin-bottom: 5px; 
+        }
+    
+        .dashboard-item i {
+            margin-bottom: 3px; 
+            font-size: 16px; 
+            display: block;
+        }
+}
+
+@media screen and (max-width: 300px) {
+
+    .nav-link.staff{
+        display: none;
+    }
+    
+}

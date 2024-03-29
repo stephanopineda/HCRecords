@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .models import User
 from .forms import RegistrationForm
+from functools import wraps
 
 # Home
 def home(request):
@@ -24,12 +25,15 @@ def register_page(request):
                 user.username = user.username.lower()
                 user.save()
                 login(request, user)
-                return redirect('home')
+                return redirect('user_dashboard')
             else: 
-                # To be added: handle username and password requirements 
-                messages.error(request, "Error occurred. Please try again.")
-                
-        
+                # Add form errors to context
+                context['form'] = form
+                # Display form errors as messages
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        messages.error(request, f"{field.capitalize()}: {error}")
+
         return render(request, 'base/register.html', context)
     else:
         return redirect('home')
@@ -56,7 +60,7 @@ def login_page(request):
                 if request.user.is_staff:
                     return redirect('staff_dashboard')
                 else:
-                    return redirect('profile')
+                    return redirect('user_dashboard')
             else: 
                 messages.error(request, "Invalid Password")
                 return redirect('login')
@@ -73,18 +77,57 @@ def logout_client(request):
 
 # User and Staff Views
 @login_required(login_url='home')
-def user_profile(request):
+def user_dashboard(request):
     user = User.objects.get(id=request.user.id)   
     context = {user: 'user'}
-    return render(request, 'base/user_profile.html', context)
+    return render(request, 'base/user_dashboard.html', context)
 
 
-@login_required(login_url='home')
+# Staff Dashboard and Side Bars
+
+def staff_login_required(view_func):
+    @wraps(view_func)
+    def wrapper(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('home')  
+        elif not request.user.is_staff:
+            return redirect('home')  
+        else:
+            return view_func(request, *args, **kwargs)
+    return wrapper
+
+@staff_login_required
 def staff_dashboard(request):
-    if (request.user.is_staff):
-        context = {}
-        return render(request, 'base/staff_dashboard.html', context)
+    total_users = User.objects.count()
+    context = {'total_users': total_users}
+    return render(request, 'base/staff_dashboard.html', context)
 
+@staff_login_required
+def dashboard(request):
+    total_users = User.objects.count()
+    context = {'total_users': total_users}
+    return render(request, 'base/staff-section/dashboard.html', context)
+
+@staff_login_required
+def unverifiedforms(request):
+    context = {}
+    return render(request, 'base/staff-section/unverifiedforms.html', context)
+
+@staff_login_required
+def view_records(request):
+    context = {}
+    return render(request, 'base/staff-section/view_records.html', context)
+
+@staff_login_required
+def manage_users(request):
+    users = User.objects.all()
+    context = {'users': users}
+    return render(request, 'base/staff-section/manage_users.html', context)
+
+@staff_login_required
+def learn_more(request):
+    context = {}
+    return render(request, 'base/staff-section/learn_more.html', context)
 
 
 
