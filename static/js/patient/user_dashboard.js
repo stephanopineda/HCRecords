@@ -3,13 +3,13 @@ const patientUrl = "{% url 'patient_record' %}";
 
 
 document.addEventListener('DOMContentLoaded', function() {
-	document.querySelectorAll('.nav-list a').forEach(link => {
-		link.addEventListener('click', function(event) {
-			event.preventDefault(); 
-			const pageUrl = this.dataset.pageUrl; 
-			loadPage(pageUrl); 
-		});
-	});
+    document.querySelectorAll('.nav-list a').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            const pageUrl = this.getAttribute('data-page-url'); 
+            loadPage(pageUrl); 
+        });
+    });
 });
 
 function loadPage(pageUrl) {

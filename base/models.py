@@ -10,8 +10,6 @@ class User(AbstractUser):
     birth_date = models.DateField(default=timezone.now)
 
 
-    # role = if registerpage sa home -  isstaff = false, if sa loob ng admin = isstaff = True
-
     REQUIRED_FIELDS = []
 
 # Comment out models.py line 9 and models.py line 12 and forms.py lines 15-17 before adding superuser

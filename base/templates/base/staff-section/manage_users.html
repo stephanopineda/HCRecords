@@ -1,13 +1,11 @@
+{% include 'sections.html' %}
+
+{% block content %}
+
 {% load static %}
 
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Users</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'styles/staff/users.css' %}">
-</head>
+
 <body>
 
 <div class="manage-container">
@@ -23,10 +21,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for user in users %}
+            {% for patient in patients %}
             <tr class="{% cycle 'even' 'odd' %}">
-                <td>{{ user.id }}</td>
-                <td>{{ user.first_name }} {{ user.last_name }}</td>
+                <td>{{ patient.id }}</td>
+                <td>{{ patient.first_name }} {{ patient.last_name }}</td>
                 <td><!-- Description column content here --></td>
                 <td>
                     <button class="view-button">View</button>
@@ -41,3 +39,5 @@
 
 </body>
 </html>
+
+{% endblock %}

@@ -74,17 +74,26 @@ def logout_client(request):
     logout(request)
     return redirect('home')
 
-
-# User and Staff Views
+# User Views
 @login_required(login_url='home')
 def user_dashboard(request):
     user = User.objects.get(id=request.user.id)   
     context = {user: 'user'}
     return render(request, 'base/user_dashboard.html', context)
 
+@login_required(login_url='home')
+def patient_profile(request):
+    user = request.user
+    context = {'user': user}
+    return render(request, 'base/patient-section/patient_profile.html', context)
+
+@login_required(login_url='home')
+def patient_record(request):
+    context = {}
+    return render(request, 'base/patient-section/patient_record.html', context)
+
 
 # Staff Dashboard and Side Bars
-
 def staff_login_required(view_func):
     @wraps(view_func)
     def wrapper(request, *args, **kwargs):
@@ -99,13 +108,17 @@ def staff_login_required(view_func):
 @staff_login_required
 def staff_dashboard(request):
     total_users = User.objects.count()
-    context = {'total_users': total_users}
+    total_patients = User.objects.filter(is_staff=False).count()
+    total_staffs = User.objects.filter(is_staff=True, is_superuser=False).count()
+    context = {'total_users': total_users, 'total_patients': total_patients, 'total_staffs': total_staffs}
     return render(request, 'base/staff_dashboard.html', context)
 
 @staff_login_required
 def dashboard(request):
     total_users = User.objects.count()
-    context = {'total_users': total_users}
+    total_patients = User.objects.filter(is_staff=False).count()
+    total_staffs = User.objects.filter(is_staff=True, is_superuser=False).count()
+    context = {'total_users': total_users, 'total_patients': total_patients, 'total_staffs': total_staffs}
     return render(request, 'base/staff-section/dashboard.html', context)
 
 @staff_login_required
@@ -120,15 +133,14 @@ def view_records(request):
 
 @staff_login_required
 def manage_users(request):
-    users = User.objects.all()
-    context = {'users': users}
+    patients = User.objects.filter(is_staff=False)
+    context = {'patients': patients}
     return render(request, 'base/staff-section/manage_users.html', context)
 
 @staff_login_required
 def learn_more(request):
     context = {}
     return render(request, 'base/staff-section/learn_more.html', context)
-
 
 
 # User CRUD

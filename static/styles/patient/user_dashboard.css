@@ -269,6 +269,19 @@ body{
   }
 
   /* For tablets and smaller screens */
+
+  @media only screen and (max-width: 815px) {
+    .navbar-brand h1 {
+        font-size: 16px;
+      }
+  }
+
+  @media only screen and (max-width: 690px) {
+    .navbar-brand h1 {
+        display: none;
+      }
+  }
+  
   @media only screen and (max-width: 768px) {
 
     .navbar-brand img {

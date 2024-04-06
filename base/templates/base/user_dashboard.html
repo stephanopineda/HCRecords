@@ -3,7 +3,8 @@
 {% block content %}
 
 {% load static %}
-
+    
+    <title>{% block title %} Patient Dashboard {% endblock title %}</title>
     <link rel="stylesheet"  href="{% static 'styles/patient/user_dashboard.css' %}">
 
 <body>
@@ -15,7 +16,7 @@
 		</div>
 		<ul class="nav-list">
 			<li>
-				<a href="#" data-page-url="('% url 'patient_profile' %)">
+				<a href="#" data-page-url="{% url 'patient_profile' %}">
 					<i class='bx bx-user'></i>
 					<span class="links_name">Profile</span>
 				</a>
@@ -23,7 +24,7 @@
 			</li>
 	
 			<li>
-				<a href="#" data-page-url="('% url 'patient_record' %)">
+				<a href="#" data-page-url="{% url 'patient_record' %}">
 					<i class='bx bx-file'></i>
 					<span class="links_name">Record</span>
 				</a>
@@ -34,7 +35,6 @@
 	
 	<div id="pageContent"></div>
 	
-	  
 	<script src="{% static 'js/patient/user_dashboard.js' %}"></script>
 
 {% endblock %}

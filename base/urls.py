@@ -13,6 +13,9 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name="dashboard"),
     path('unverifiedforms/', views.unverifiedforms, name="unverifiedforms"),
     path('viewrecords/', views.view_records, name="view_records"),
-    path('manage-users/', views.manage_users, name="manage_users"),
-    path('learn-more/', views.learn_more, name="learn_more"),
+    path('manageusers/', views.manage_users, name="manage_users"),
+    path('learnmore/', views.learn_more, name="learn_more"),
+
+    path('patientprofile/', views.patient_profile, name="patient_profile"),
+    path('patientrecord/', views.patient_record, name="patient_record"),
 ]
